@@ -14,11 +14,9 @@ dotenv_1.default.config();
 app.use((0, cors_1.default)());
 app.use(routes_1.default);
 const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.l2o1jo8.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`;
-// const options = { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }
 const options = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    // useFindAndModify: false
 };
 mongoose_1.default
     .connect(uri, options)
