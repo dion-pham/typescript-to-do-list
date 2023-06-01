@@ -22,7 +22,7 @@ const addTodo = async (req: Request, res: Response): Promise<void> => {
             description: body.description,
             status: body.status,
         })
-
+        console.log(todo,'------thisistodo')
         const newTodo: ITodo = await todo.save()
         const allTodos: ITodo[] = await Todo.find()
 
