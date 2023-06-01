@@ -11,6 +11,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 4000;
 dotenv_1.default.config();
+app.use(express_1.default.json());
 app.use((0, cors_1.default)());
 app.use(routes_1.default);
 const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.l2o1jo8.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`;
