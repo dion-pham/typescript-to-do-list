@@ -13,24 +13,27 @@ export const getTodos = async (): Promise<AxiosResponse<ApiDataType>> => {
     }
 }
 
-export const addTodo = async ( formData: ITodo ): Promise<AxiosResponse<ApiDataType>> => {
+export const addTodo = async (
+    formData: ITodo
+): Promise<AxiosResponse<ApiDataType>> => {
     try {
         const todo: Omit<ITodo, "_id"> = {
             name: formData.name,
             description: formData.description,
             status: false,
         }
+
         const saveTodo: AxiosResponse<ApiDataType> = await axios.post(
             baseUrl + "/add-todo",
             todo
         )
         return saveTodo
     } catch (error) {
-        throw new Error(`${error}`)
+        throw new Error()
     }
 }
 
-export const updateTodo = async ( todo: ITodo ): Promise<AxiosResponse<ApiDataType>> => {
+export const updateTodo = async (todo: ITodo): Promise<AxiosResponse<ApiDataType>> => {
     // async (parameter: type): return value?
     try {
         const todoUpdate: Pick<ITodo, "status"> = {
@@ -46,7 +49,7 @@ export const updateTodo = async ( todo: ITodo ): Promise<AxiosResponse<ApiDataTy
     }
 }
 
-export const deleteTodo = async (_id: string ): Promise<AxiosResponse<ApiDataType>> => {
+export const deleteTodo = async (_id: string): Promise<AxiosResponse<ApiDataType>> => {
     try {
         const deletedTodo: AxiosResponse<ApiDataType> = await axios.delete(
             `${baseUrl}/delete-todo/${_id}`

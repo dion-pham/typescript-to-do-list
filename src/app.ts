@@ -14,8 +14,7 @@ app.use(todoRoutes)
 const uri: string = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.l2o1jo8.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`
 const options = {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
-
+    useUnifiedTopology: true
 } as mongoose.ConnectOptions;
 
 

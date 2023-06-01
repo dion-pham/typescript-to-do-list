@@ -1,57 +1,34 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 
-// difference between interface and props?? compare to TodoItem.tsx
-interface Props {
-    saveTodo: (formData: ITodo) => void;
+type Props = {
+    saveTodo: (e: React.FormEvent, formData: ITodo | any) => void
 }
 
 const AddTodo: React.FC<Props> = ({ saveTodo }) => {
-    const [formData, setFormData] = useState<ITodo>({
-        _id: "",
-        name: "",
-        description: "",
-        status: false,
-    });
+    const [formData, setFormData] = useState<ITodo | {}>()
 
-    const handleInputChange = (
-        e: React.ChangeEvent<HTMLInputElement>
-    ): void => {
+    const handleForm = (e: React.FormEvent<HTMLInputElement>): void => {
         setFormData({
             ...formData,
-            [e.target.name]: e.target.value,
-        });
-    };
-
-    const handleSubmit = (e: React.FormEvent): void => {
-        e.preventDefault();
-        saveTodo(formData);
-        setFormData({
-            _id: "",
-            name: "",
-            description: "",
-            status: false,
-        });
-    };
+            [e.currentTarget.id]: e.currentTarget.value,
+        })
+    }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input
-                type="text"
-                name="name"
-                placeholder="Todo name"
-                value={formData.name}
-                onChange={handleInputChange}
-            />
-            <input
-                type="text"
-                name="description"
-                placeholder="Todo description"
-                value={formData.description}
-                onChange={handleInputChange}
-            />
-            <button type="submit">Add Todo</button>
+        <form className='Form' onSubmit={(e) => saveTodo(e, formData)}>
+            <div>
+                <div>
+                    <label htmlFor='name'>Name</label>
+                    <input onChange={handleForm} type='text' id='name' />
+                </div>
+                <div>
+                    <label htmlFor='description'>Description</label>
+                    <input onChange={handleForm} type='text' id='description' />
+                </div>
+            </div>
+            <button disabled={formData === undefined ? true : false} >Add Todo</button>
         </form>
-    );
-};
+    )
+}
 
-export default AddTodo;
+export default AddTodo

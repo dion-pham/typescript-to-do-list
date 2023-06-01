@@ -16,8 +16,8 @@ const App: React.FC = () => {
       .catch((err: Error) => console.log(err))
   }
 
+
   const handleSaveTodo = (e: React.FormEvent, formData: ITodo): void => {
-    console.log(formData, '--------')
     e.preventDefault()
     addTodo(formData)
       .then(({ status, data }) => {
@@ -50,6 +50,7 @@ const App: React.FC = () => {
       })
       .catch(err => console.log(err))
   }
+
 
   return (
     <main className='App'>

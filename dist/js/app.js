@@ -16,7 +16,7 @@ app.use(routes_1.default);
 const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.l2o1jo8.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`;
 const options = {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
+    useUnifiedTopology: true
 };
 mongoose_1.default
     .connect(uri, options)
